@@ -1,25 +1,19 @@
-# to connect MS SQL database using pyodbc
-import pyodbc as odbc
+# to connect MySQL database using mysql-connector-python
+import mysql.connector
 
-DRIVER_NAME= ''
-SERVER_NAME = ''
-DATABASE_NAME = ''
-USER_ID = ''
-PASSWORD= ''
+conn = mysql.connector.connect(
+    host = "localhost",
+    user = "root",
+    password= "Prayag@2308",
+    database = "demo",
+)
 
-connection_string = f"""
-DRIVER= {{{DRIVER_NAME}}};
-SERVER = {SERVER_NAME};
-DATABASE = {DATABASE_NAME};
-trust_connection = yes;
-UID = {USER_ID};
-PID = {PASSWORD};
-"""
+cursor= conn.cursor()
 
-conn = odbc.connect(connection_string)
-sql_query = """
-SELECT @@SERVERNAME
-"""
-
-cursor = conn.cursor()
-cursor.execute(sql_query)
+cursor.execute("INSERT INTO student(sid,name,address,stream) VALUES(%s,%s,%s,%s)",(101,"Pramod","Mumbai","computer"))
+conn.commit()
+cursor.execute("SELECT * FROM student")
+for i in cursor.fetchall():
+    print(i)
+cursor.close()
+conn.close()
