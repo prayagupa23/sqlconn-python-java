@@ -8,7 +8,7 @@ class demo{
         String url = "jdbc:mysql://localhost:3306/experiment3";
         String user= "root";
         String password= "Prayag@2308";
-        String query = "INSERT INTO student(s_id,name,age,email) VALUES (2,'Pramod',21,'prmd@email')";
+        String query = "INSERT INTO student(s_id,name,age,email) VALUES (3,'Pra',22,'prmd@mail')";
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
